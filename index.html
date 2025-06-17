@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minha Loja</title>
+  <style>
+    /* RESET GERAL */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, rgba(255, 182, 193, 0.25));
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    /* HEADER */
+    header {
+      background-color: #222;
+      color: white;
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 1.5em;
+      margin: 0;
+    }
+
+    /* MENU */
+    nav {
+      background: linear-gradient(to right, #fc466b, #3f5efb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 12px 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 15px;
+      font-weight: bold;
+      font-size: 14px;
+      text-transform: uppercase;
+      border-radius: 7px;
+    }
+
+    nav a:hover {
+      transition: 0.1s;
+      box-shadow: 0 0 2px #4cbdaa, 0 0 3px #dddfec, 0 0 20px #e5e9e8;
+    }
+
+    /* BANNER */
+    .bannerlookse {
+      position: relative;
+      width: 100%;
+      height: 50vh;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .lookbook {
+      position: absolute;
+      top: 40%;
+      left: 60%;
+      min-width: 100%;
+      min-height: 120%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .banner-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, #ff69b4, #87cefa);
+      z-index: 2;
+      opacity: 0.85;
+    }
+
+    .logo-sobre-banner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      width: 25vw;
+      height: auto;
+      background: linear-gradient(to right, rgba(255, 105, 180, 0.3), rgba(135, 206, 250, 0.2));
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+
+    .logo-sobre-banner h1 {
+      font-size: 3em;
+    }
+
+    .logo-sobre-banner p {
+      font-size: 1.2em;
+      margin-top: 15px;
+    }
+
+    /* GRADE DE PRODUTOS */
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 10px;
+    }
+
+    .produto {
+      background: linear-gradient(to right, rgba(255, 105, 180, 0.3), rgba(135, 206, 250, 0.2));
+      border: 1px solid #eee;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .produto:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .produto img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .produto:hover img {
+      transform: scale(1.05);
+    }
+
+    .produto h3 {
+      margin: 15px 10px 5px;
+      font-size: 1.1em;
+      color: #333;
+    }
+
+    .preco {
+      color: #228b41;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 6px;
+      background-color: #e9d4e9;
+      border-radius: 12px;
+      padding: 2px 10px;
+      display: inline-block;
+    }
+
+    .btn {
+      background-color: #eb9bbb;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px auto 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #1f9178;
+    }
+
+    .btncomprar {
+      background-color: #000000;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 2px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px auto 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btncomprar:hover {
+      background-color: #568d54;
+    }
+
+    footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+      font-size: 14px;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 600px) {
+      .bannerlookse {
+        height: 200px;
+      }
+
+      .logo-sobre-banner {
+        width: 90vw;
+        padding: 15px;
+      }
+
+      .logo-sobre-banner h1 {
+        font-size: 2em;
+      }
+
+      .logo-sobre-banner p {
+        font-size: 1em;
+      }
+
+      nav a {
+        font-size: 13px;
+        margin: 5px 10px;
+      }
+
+      .produtos {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .produto h3 {
+        font-size: 1em;
+      }
+
+      .preco {
+        font-size: 1em;
+      }
+
+      .btn {
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Minha Loja Estilosa</h1>
+  </header>
+
+  <nav>
+    <a href="#">Início</a>
+    <a href="#">Produtos</a>
+    <a href="#">Promoções</a>
+    <a href="#">Contato</a>
+  </nav>
+
+  <div class="bannerlookse">
+    <img class="lookbook" src="https://picsum.photos/1200/500?grayscale" alt="Banner">
+    <div class="banner-overlay"></div>
+    <div class="logo-sobre-banner">
+      <h1>Bem-vindo!</h1>
+      <p>Confira nossos produtos incríveis</p>
+    </div>
+  </div>
+
+  <section class="produtos">
+    <div class="produto">
+      <img src="https://picsum.photos/300/200" alt="Produto 1">
+      <h3>Produto A</h3>
+      <div class="preco">R$ 29,99</div>
+      <a href="#" class="btncomprar">Comprar</a>
+    </div>
+    <div class="produto">
+      <img src="https://picsum.photos/301/200" alt="Produto 2">
+      <h3>Produto B</h3>
+      <div class="preco">R$ 49,99</div>
+      <a href="#" class="btncomprar">Comprar</a>
+    </div>
+    <div class="produto">
+      <img src="https://picsum.photos/302/200" alt="Produto 3">
+      <h3>Produto C</h3>
+      <div class="preco">R$ 39,99</div>
+      <a href="#" class="btncomprar">Comprar</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 - Desenvolvido por Weverton | Todos os direitos reservados.
+  </footer>
+</body>
+</html>
